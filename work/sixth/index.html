@@ -14,7 +14,7 @@
       <form class="register">
         <div class="input-wrapper">
           <input type="text" class="input" placeholder="Input Your Name.">
-          <p class="rest-count">30</p>
+          <p class="rest-count"></p>
         </div>
         <button class="register-btn">Register</button>
       </form>
@@ -26,7 +26,21 @@
       // .keyup() 文字入力後に発火されるイベントです。
       // .replace(/\s+/g,'').length 改行を含まない文字数を取得します。
       // .val() input要素のvalueを取得します。
+      $(function() {
+        var $check = $('.rest-count');
+        var count = 30;
+        $check.html(count);
+        $('.input').keyup(function() {
+          var inputLength = $(this).val().replace(/\s+/g,'').length;
+          var countResult = count - inputLength;
+          $check.html(countResult);
+          if(countResult < 0) {
+            $check.addClass('red');
+          } else {
+            $check.removeClass('red');
+          }
+        });
+      });
     </script>
   </body>
 </html>
-
